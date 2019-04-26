@@ -79,12 +79,18 @@ Resources:
         - ${ResourceName} From Stack ${StackTagName} Environment ${EnvironmentTagName}
         - ResourceName: Api
       StageName: !Ref EnvironmentAPIGatewayStageName
+      Auth:
+        Authorizers:
+          WildRydes:
+            UserPoolArn: !GetAtt UserPool.Arn
       DefinitionBody:
         swagger: '2.0'
         info: {}
         paths:
           /ride:
             post:
+              security:
+                - WildRydes: []
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
