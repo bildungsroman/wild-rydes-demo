@@ -258,7 +258,7 @@ Resources:
         Timer:
           Type: Schedule
           Properties:
-            Schedule: rate(4 minutes)
+            Schedule: rate(4 days)
           Metadata:
             StackeryName: UnicornPaycheckTrigger
       Environment:
