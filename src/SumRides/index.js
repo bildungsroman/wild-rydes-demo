@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+const epsagon = require('epsagon');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
@@ -10,8 +11,7 @@ exports.handler = async event => {
         .map(countRide)
     );
   } catch (e) {
-    // we must never stop the stream processing
-    console.log(e);
+    epsagon.setError(e);
   }
 
 };
